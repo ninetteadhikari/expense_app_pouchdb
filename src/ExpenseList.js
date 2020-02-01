@@ -1,21 +1,52 @@
 import React, { Component } from 'react';
 
 export default class ExpenseList extends Component {
-  
-
-
   render() {
+    const dates = this.props.items.map(el => {
+      return el.date;
+    });
+    const uniqueDates = [...new Set(dates)];
     console.log('items', this.props.items);
+    console.log('unique date', uniqueDates);
+
+    let totalExpense
 
     return (
       <>
-        {this.props.items &&
-          this.props.items.map(item => {
+        {uniqueDates &&
+          uniqueDates.map(date => {
             return (
               <div>
-                <h2>{item.date}</h2>
-                <p>Item name: {item.description}</p>
-                <p>Expense: EUR {item.expense}</p>
+                <h1>Date: {date}</h1>
+                <div className='item-container'>
+                  {this.props.items
+                    .filter(allItems => {
+                      return allItems.date === date;
+                    })
+                    .map(item => {
+                      return (
+                        <div className='each-item'>
+                          <p>Item name: {item.description}</p>
+                          <p>Expense: EUR {item.expense}</p>
+                        </div>
+                      );
+                    })}
+                </div>
+                <h3>
+                  Total expense: EUR{' '}
+                  {
+                    (totalExpense = this.props.items
+                      .filter(allItems => {
+                        return allItems.date === date;
+                      })
+                      .map(item => {
+                        return item.expense;
+                      })
+                      .reduce((a, b) => {
+                        return Number(a) + Number(b);
+                      }, 0))
+                  }
+                </h3>
               </div>
             );
           })}
