@@ -36,3 +36,16 @@
     transform: rotate(360deg);
   }
 }
+
+.input-container {
+  padding: 10px;
+}
+.input-container>label{
+  padding-right: 10px;
+}
+
+.save-button {
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
