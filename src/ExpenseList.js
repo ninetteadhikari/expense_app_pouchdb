@@ -28,6 +28,7 @@ export default class ExpenseList extends Component {
                         <div className='each-item'>
                           <p>Item name: {item.description}</p>
                           <p>Expense: EUR {item.expense}</p>
+                          <button type="submit" className='save-button' onClick={()=>this.props.deleteItem(item._id)}>Delete</button>
                         </div>
                       );
                     })}

@@ -10,27 +10,39 @@ export default class DB {
 
   // Gets all the items from the database
   getAllToDos() {
-   return this.db
+    return this.db
       .allDocs({ include_docs: true, descending: true })
       .then(response => {
         console.log('get all docs', response.rows);
-        let items=[]
+        let items = [];
         response.rows.forEach(el => {
           return items.push(el.doc);
         });
         console.log('get all items', items);
         return items;
         // return response.rows
-    })
-    .catch(err => {
+      })
+      .catch(err => {
         console.log(err);
-    });
+      });
   }
 
   // Creates a new item
   createNewItem(item) {
     return this.db
       .put(item)
+      .then(response => {
+        return response;
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }
+
+  // Deletes an item
+  deleteItem(item) {
+    return this.db
+      .remove(item)
       .then(response => {
         return response;
       })
