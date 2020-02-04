@@ -14,7 +14,7 @@ export default class ExpenseList extends Component {
         {uniqueDates &&
           uniqueDates.map(date => {
             return (
-              <div>
+              <div key={date}>
                 <h1>Date: {date}</h1>
                 <div className='item-container'>
                   {this.props.items
@@ -23,7 +23,7 @@ export default class ExpenseList extends Component {
                     })
                     .map(item => {
                       return (
-                        <div className='each-item'>
+                        <div className='each-item' key={item._id}>
                           <p>Item name: {item.description}</p>
                           <p>Expense: EUR {item.expense}</p>
                           <button type="submit" className='save-button' onClick={()=>this.props.deleteItem(item._id)}>Delete</button>
