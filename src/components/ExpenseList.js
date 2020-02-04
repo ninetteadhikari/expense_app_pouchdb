@@ -6,8 +6,6 @@ export default class ExpenseList extends Component {
       return el.date;
     });
     const uniqueDates = [...new Set(dates)];
-    console.log('items', this.props.items);
-    console.log('unique date', uniqueDates);
 
     let totalExpense
 

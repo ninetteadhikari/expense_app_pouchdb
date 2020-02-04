@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
-import InputForm from './InputForm';
+import InputForm from './components/InputForm';
 import DB from './db';
-import ExpenseList from './ExpenseList';
+import ExpenseList from './components/ExpenseList';
 
 class App extends Component {
   db = new DB();
@@ -25,17 +25,6 @@ class App extends Component {
       });
   }
 
-  //  async componentDidMount() {
-  //   const items = await this.state.db.getAllToDos();
-
-  //     this.setState({
-  //       items,
-  //       loading:false
-  //     });
-
-  //   console.log('initial state items', items)
-  // }
-
   // Handles data once the 'submit' button is pressed or form submitted
   handleSave = async item => {
     await this.state.db.createNewItem(item);
@@ -52,6 +41,7 @@ class App extends Component {
     }
   };
 
+  // Deletes an item from database and the state
   deleteItem = async id => {
     const deletedItem = this.state.items.filter(el => {
       return el._id === id;
@@ -68,7 +58,6 @@ class App extends Component {
   render() {
     return (
       <div className='App'>
-        {console.log('all items', this.state.items)}
         <header>
           <h1>Daily expense list</h1>
           <InputForm handleSave={this.handleSave} />

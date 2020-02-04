@@ -27,7 +27,6 @@ export default class InputForm extends Component {
   handleSave = async e => {
     e.preventDefault();
     await this.props.handleSave(this.state.items);
-    console.log('submit items',this.state.items)
   };
 
   render() {
